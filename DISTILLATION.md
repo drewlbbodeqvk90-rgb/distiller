@@ -25,8 +25,10 @@ into a skill set rather than a pile of documents.
    2026-10-06-keeper-vault → 1 draft).
 4. **Gate** the result through §4 (quality gates) — no unproven claims, tagged
    `[UNVERIFIED]` where needed, checksum manifest present.
-5. **Index:** add the skill row to `excavator/SKILLS.md` (this is §2 step 8)
-   and version per `excavator/VERSIONING.md`.
+5. **Promote** (operator): the finished folder waits in
+   `output/<date-target>/<skill-name>/`; copying it into the excavator
+   bundle's `skills/` and adding its `SKILLS.md` row is the explicit
+   promotion step (ADD-SESSION.md step 5).
 
 ## 1. When a session is distillable
 
