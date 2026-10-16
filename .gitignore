@@ -1,0 +1,26 @@
+# --- sessions are plaintext-by-design: NEVER committed (same policy as the
+#     excavator bundle's session/). Everything under sessions/ — HANDOFF.md,
+#     runbooks, scripts, CREDENTIALS/audit files, loot copies — is a local
+#     plaintext record. Git versions only the reproducible text: playbooks
+#     and references/. Back session folders up externally if their loss
+#     matters; do not 'fix' missing sessions by committing them.
+sessions/
+
+# --- defensive leftovers (harmless; superseded by the sessions/ blanket,
+#     kept in case session material is ever copied outside sessions/) ---
+**/loot/
+**/*secrets*
+**/uids.txt
+**/.env
+*.kdbx
+*.key
+*.pem
+id_rsa*
+
+# --- python / OS / harness junk ---
+__pycache__/
+*.pyc
+Thumbs.db
+Desktop.ini
+.DS_Store
+.cline/

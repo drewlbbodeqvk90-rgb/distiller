@@ -1,0 +1,78 @@
+# ADD-SESSION.md — instructions for adding a session to the distiller
+
+How to add a completed excavation session to this project and distill it
+into skill(s) for the excavator bundle. Detailed procedures live in
+`DISTILLATION.md` (§1 checklist, §2 procedure, §3 template, §4 gates); this
+file is the step-by-step flow you (or the agent you run) follow.
+
+## Step 1 — Drop the session in
+
+- Create `sessions/<date-target>/` — one folder per target/case, named
+  `YYYY-MM-DD-<target>` (examples: `2026-10-09-uygar-uslu/`,
+  `2026-10-06-keeper-vault/`).
+- Drop the **rawest material available**: the agent's session package
+  (`AGENTS.md` runbook, `scripts/`, `state.json`/findings) plus any session
+  notes/audit reports. Never a further-distilled version of the summary —
+  distillation quality depends on raw evidence.
+- Unredacted secret side-files stay OUT of skills — keep them mode-600 in
+  the session folder (or at their original location; write a `POINTER.md`
+  noting where).
+- If the session carries a `HANDOFF.md` (the excavator's fixed distiller
+  interface — START-PROMPT SESSION CLOSE item 0), include it: it indexes
+  the session's proven techniques (§3), dead-ends (§4), skill candidates
+  (§5), scripts verdicts (§6) and open leads (§8). The distillation agent
+  reads it FIRST; everything else in the folder is supporting evidence.
+
+## Step 2 — Check distillability
+
+Apply the `DISTILLATION.md` §1 checklist to the folder. It passes when the
+session summary contains:
+
+- [ ] a proven end-to-end workflow (not plans)
+- [ ] gotchas / failed approaches (record dead ends too)
+- [ ] tested scripts or paste-ready code
+- [ ] an environment/toolchain matrix (exact versions)
+- [ ] a deliverables pattern
+- [ ] provenance (workspace, date, evidence paths)
+
+Anything missing: either capture it now, or the agent must tag those claims
+`[UNVERIFIED]` in the resulting SKILL.md. (The excavator's START-PROMPT
+WORK JOURNAL section shapes runbooks to pass this checklist by construction.)
+
+## Step 3 — Run the distillation (ONE run per session)
+
+Feed the agent `DISTILL-PROMPT.md` (fill `<date-target>` and
+`<excavator-root>`). It reads the session's `HANDOFF.md` FIRST — its §5
+skill candidates are the binding extraction plan — and distills per
+`DISTILLATION.md` §2 into `excavator/skills/<skill-name>/` — SKILL.md from the §3 template, scripts/
+(byte-identical tested code), references/ (deep-format facts plus
+`references/toolchain-versions.md` with sha256 of every script).
+
+One session can yield zero, one or several skills (2026-10-09-pixel9 → 2,
+2026-10-09-uygar-uslu → 1, 2026-10-06-keeper-vault → 1 draft). If it yields
+nothing new, keep the session folder anyway — it feeds the shared-rules
+synthesis and the router skill.
+
+## Step 4 — Gate the result
+
+- No unproven claims (or explicitly tagged `[UNVERIFIED]`).
+- Every script listed in `references/toolchain-versions.md` with sha256.
+- No secret values anywhere in the skill.
+- Version per `excavator/VERSIONING.md`: 1.0.0 when proven end-to-end, 0.x
+  for draft/partial; MINOR for new technique, PATCH for wording/matrix
+  refresh.
+
+## Step 5 — Index
+
+Add the skill row (name, version, purpose, source session) to
+`excavator/SKILLS.md`; the session drop is already in place under
+`sessions/`.
+
+## Changelog
+
+- 1.2.0 — 2026-10-15 — Step 1 gains the HANDOFF.md bullet: every session
+  drop now carries the fixed distiller interface file; read it first.
+- 1.1.0 — 2026-10-09 — rewritten for the excavator/distiller split: sessions
+drop into `sessions/`, skill output goes to `excavator/skills/`, index in
+`excavator/SKILLS.md`.
+- 1.0.0 — 2026-10-09 — initial instructions file; flow per DISTILLATION.md §0.
