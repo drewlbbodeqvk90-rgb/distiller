@@ -1,6 +1,6 @@
 # DISTILL-PROMPT — first message for a distillation run
 
-Fill the placeholders (`<date-target>`, `<excavator-root>`), then feed to an
+Fill the placeholder (`<date-target>`), then feed to an
 agent as its first message. ONE run per session — the agent reads the
 session's HANDOFF.md and distills every skill candidate listed in its §5
 (typically one run yields one or several skills).
@@ -8,7 +8,9 @@ session's HANDOFF.md and distills every skill candidate listed in its §5
 --- BEGIN PROMPT ---
 You are a skill-distillation agent. Convert the completed post-exploitation
 session `<date-target>` under the distiller's `sessions/` into versioned,
-self-contained skill folders, ready for the excavator bundle.
+self-contained skill folders, produced under this project's `output/` —
+never written into the excavator bundle (promotion is a separate operator
+step).
 
 SESSION ENTRY: read `<date-target>/HANDOFF.md` FIRST — it is the
 excavator's fixed interface (§1 identity, §2 results, §3 proven techniques
@@ -33,12 +35,14 @@ For each candidate, follow DISTILLATION.md §2–§4:
 6. Apply §4 quality gates and report any item you could not satisfy.
 
 OUTPUT: one finished skill folder per §5 candidate at
-`<excavator-root>/skills/<skill-name>/`, each with a row appended to
-`<excavator-root>/SKILLS.md` (name, version, source session =
-`<date-target>`). Resolve `<excavator-root>` from the excavator bundle's
-actual deployment location. Version per `<excavator-root>/VERSIONING.md`:
-1.0.0 when proven end-to-end, 0.x while draft/partial. Finish with a final
-tally: skills created, candidates skipped and why.
+`output/<date-target>/<skill-name>/` — this project's staging area.
+Never write anywhere else in this project, and NEVER touch the sibling
+excavator bundle (independent project; its `skills/` + `SKILLS.md` are
+updated only by the operator's explicit promotion step, per
+ADD-SESSION.md step 5). Version per the excavator's VERSIONING.md
+policy: 1.0.0 when proven end-to-end, 0.x while draft/partial; MINOR
+for a new technique, PATCH for wording/matrix refresh. Finish with a
+final tally: skills created, candidates skipped and why.
 
 RULES: never copy secret values into a skill (paths/masks only, ≤4–6 chars
 + length); do not modify the session folder; every claim traceable to raw
@@ -47,6 +51,11 @@ evidence.
 
 ## Changelog
 
+- 1.3.0 — 2026-10-16 — decoupled from the excavator bundle: skills are
+  produced into `output/<date-target>/<skill-name>/` (staging, tracked
+  here), `<excavator-root>` placeholder removed — promotion into
+  `skills/` + `SKILLS.md` is the operator's explicit step
+  (ADD-SESSION.md step 5). One placeholder remains: `<date-target>`.
 - 1.2.0 — 2026-10-15 — session-driven flow: ONE run per session distills
 every HANDOFF.md §5 candidate (placeholders reduced to `<date-target>` +
 `<excavator-root>`); dead-ends and scripts-verdict ingestion explicit;

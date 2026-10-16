@@ -1,7 +1,8 @@
 # ADD-SESSION.md — instructions for adding a session to the distiller
 
 How to add a completed excavation session to this project and distill it
-into skill(s) for the excavator bundle. Detailed procedures live in
+into skill(s) in this project's `output/` staging area (promotion into
+the excavator bundle is step 5). Detailed procedures live in
 `DISTILLATION.md` (§1 checklist, §2 procedure, §3 template, §4 gates); this
 file is the step-by-step flow you (or the agent you run) follow.
 
@@ -41,10 +42,10 @@ WORK JOURNAL section shapes runbooks to pass this checklist by construction.)
 
 ## Step 3 — Run the distillation (ONE run per session)
 
-Feed the agent `DISTILL-PROMPT.md` (fill `<date-target>` and
-`<excavator-root>`). It reads the session's `HANDOFF.md` FIRST — its §5
+Feed the agent `DISTILL-PROMPT.md` (fill `<date-target>`). It reads the
+session's `HANDOFF.md` FIRST — its §5
 skill candidates are the binding extraction plan — and distills per
-`DISTILLATION.md` §2 into `excavator/skills/<skill-name>/` — SKILL.md from the §3 template, scripts/
+`DISTILLATION.md` §2 into `output/<date-target>/<skill-name>/` — SKILL.md from the §3 template, scripts/
 (byte-identical tested code), references/ (deep-format facts plus
 `references/toolchain-versions.md` with sha256 of every script).
 
@@ -62,14 +63,22 @@ synthesis and the router skill.
   for draft/partial; MINOR for new technique, PATCH for wording/matrix
   refresh.
 
-## Step 5 — Index
+## Step 5 — Promote (operator decision)
 
-Add the skill row (name, version, purpose, source session) to
-`excavator/SKILLS.md`; the session drop is already in place under
-`sessions/`.
+The distiller produces; it never writes into the excavator bundle. To
+adopt a skill: review the gated folder under
+`output/<date-target>/<skill-name>/`, then copy it into the excavator
+bundle's `skills/`, add its `SKILLS.md` row (name, version, purpose,
+source session = `<date-target>`), and commit there. Not every
+distilled skill must ship — `output/` is the staging area you decide
+from. The session drop is already in place under `sessions/`.
 
 ## Changelog
 
+- 1.3.0 — 2026-10-16 — distiller output decoupled from the excavator
+  bundle: skills land in `output/<date-target>/<skill-name>/`; step 5
+  is now the explicit operator promotion (copy into `skills/` +
+  SKILLS.md row); `<excavator-root>` placeholder removed.
 - 1.2.0 — 2026-10-15 — Step 1 gains the HANDOFF.md bullet: every session
   drop now carries the fixed distiller interface file; read it first.
 - 1.1.0 — 2026-10-09 — rewritten for the excavator/distiller split: sessions

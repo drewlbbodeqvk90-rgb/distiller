@@ -19,7 +19,8 @@ into a skill set rather than a pile of documents.
    files (mode 600); it never goes into a skill.
 3. **Run the distill agent** with `DISTILL-PROMPT.md` (or this playbook):
    apply §1 to `sessions/<date-target>/`, then distill per §2 into
-   `excavator/skills/<skill-name>/`. One session can yield zero, one or
+   `output/<date-target>/<skill-name>/` — the distiller's staging area;
+   never write into the excavator bundle. One session can yield zero, one or
    several skills (2026-10-09-pixel9 → 2, 2026-10-09-uygar-uslu → 1,
    2026-10-06-keeper-vault → 1 draft).
 4. **Gate** the result through §4 (quality gates) — no unproven claims, tagged
@@ -67,8 +68,10 @@ in SKILL.md — never present them as proven.
 7. **Version**: 1.0.0 when the workflow is proven end-to-end; 0.x while draft
    or partially proven. Bump MINOR for a new technique/script, PATCH for
    wording/matrix refresh (policy: `excavator/VERSIONING.md`).
-8. **Index**: place the skill folder in `excavator/skills/` and add its row
-   to `excavator/SKILLS.md` with version + status.
+8. **Promote** (operator): the finished folder stays in
+   `output/<date-target>/`; copying it into the excavator bundle's
+   `skills/` and adding its `SKILLS.md` row is the explicit operator
+   promotion step (ADD-SESSION.md step 5).
 
 ## 3. SKILL.md template
 
@@ -141,6 +144,11 @@ Cross-session synthesis of the collected sessions — the common backbone:
 
 ## Changelog
 
+- 1.4.0 — 2026-10-16 — distillation output decoupled from the excavator
+  bundle: §0 step 3 and §2 step 8 target `output/<date-target>/` (the
+  distiller's staging area, tracked in git); promotion into `skills/` +
+  a `SKILLS.md` row is the operator's explicit step (ADD-SESSION.md
+  step 5).
 - 1.3.0 — 2026-10-09 — content policy: text-first, code-when-expensive
   (decision rule in `excavator/VERSIONING.md` "Code vs text"); `requires:`
   frontmatter field added to the SKILL.md template.

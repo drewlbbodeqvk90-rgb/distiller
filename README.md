@@ -13,6 +13,7 @@ into versioned skill folders that are handed back to the excavator's
 | `DISTILLATION.md` | detailed playbook (§1 checklist, §2 procedure, §3 template, §4 gates) |
 | `ADD-SESSION.md` | human-facing session → skill flow |
 | `sessions/` | raw session drops, one folder per session (append-only) |
+| `output/` | distilled skill folders awaiting promotion — one `<date-target>/` subfolder per run (tracked; secret-free by rule) |
 | `references/` | source material (`rules-from-another-project.md` — provenance of the C01–C28 inventory embedded in the excavator's START-PROMPT) |
 
 ## Intake — sessions/
@@ -29,11 +30,16 @@ into versioned skill folders that are handed back to the excavator's
    checklist.
 2. Run `DISTILL-PROMPT.md` as the agent's first message (or follow
    `ADD-SESSION.md` manually).
-3. The produced skill folder lands in `excavator/skills/<skill-name>/` + a
-   row in `excavator/SKILLS.md` (versioning per `excavator/VERSIONING.md`).
+3. The produced skill folder lands in
+   `output/<date-target>/<skill-name>/`. Promotion into the excavator's
+   `skills/` + a `SKILLS.md` row there is the operator's explicit step
+   (see `ADD-SESSION.md` step 5).
 
 ## Changelog
 
+- 1.1.0 — 2026-10-16 — `output/` staging area added: distiller runs
+  never write into the excavator bundle; promotion is the operator's
+  explicit step (ADD-SESSION.md step 5).
 - 1.0.0 — 2026-10-09 — split from the former CASE-SKILLS collection into an
 independent distiller project (sessions + distillation prompts); the 4
 distilled skills moved verbatim to the sibling excavator/ bundle.
