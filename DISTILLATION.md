@@ -81,6 +81,7 @@ in SKILL.md — never present them as proven.
 ---
 name: <kebab-case-name>
 description: <one paragraph; end with "Use when ...">
+purpose: <condensed one-line purpose for the SKILLS.md index - router keywords, no "Use when" tail>
 version: X.Y.Z
 requires: <runtime/deps — e.g. python3+stdlib | pycryptodomex (bundled)>
 ---
@@ -146,6 +147,9 @@ Cross-session synthesis of the collected sessions — the common backbone:
 
 ## Changelog
 
+- 1.5.0 — 2026-10-16 — §3 template frontmatter gains `purpose:` (condensed
+  one-line purpose for the SKILLS.md index row), complementing the full
+  `description:`; matches DISTILL-PROMPT 1.4.0.
 - 1.4.0 — 2026-10-16 — distillation output decoupled from the excavator
   bundle: §0 step 3 and §2 step 8 target `output/<date-target>/` (the
   distiller's staging area, tracked in git); promotion into `skills/` +

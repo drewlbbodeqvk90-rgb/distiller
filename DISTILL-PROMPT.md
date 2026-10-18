@@ -30,7 +30,8 @@ For each candidate, follow DISTILLATION.md §2–§4:
    recipes, field maps) + `references/toolchain-versions.md` (tool matrix +
    sha256 of every script).
 5. Write `SKILL.md` from the §3 template: frontmatter (name, description
-   ending with "Use when ...", version), When to use, Workflow, Gotchas
+   ending with "Use when ...", purpose - a condensed one-line router
+   summary for the index row, version), When to use, Workflow, Gotchas
    (proven), Environment (tested), Provenance, Changelog.
 6. Apply §4 quality gates and report any item you could not satisfy.
 
@@ -42,7 +43,10 @@ updated only by the operator's explicit promotion step, per
 ADD-SESSION.md step 5). Version per the excavator's VERSIONING.md
 policy: 1.0.0 when proven end-to-end, 0.x while draft/partial; MINOR
 for a new technique, PATCH for wording/matrix refresh. Finish with a
-final tally: skills created, candidates skipped and why.
+final tally: skills created, candidates skipped and why. Also emit
+`output/<date-target>/SKILLS-ROWS.md` - a paste-ready `SKILLS.md` table row
+(| Skill | Version | Purpose | Source |) per created skill, purpose taken
+verbatim from the frontmatter purpose line.
 
 RULES: never copy secret values into a skill (paths/masks only, ≤4–6 chars
 + length); do not modify the session folder; every claim traceable to raw
@@ -51,6 +55,10 @@ evidence.
 
 ## Changelog
 
+- 1.4.0 — 2026-10-16 — frontmatter gains `purpose:` (condensed one-line
+  router summary for the index row, distinct from the full `description:`);
+  run additionally emits `output/<date-target>/SKILLS-ROWS.md` —
+  paste-ready SKILLS.md rows for the operator's promotion step.
 - 1.3.0 — 2026-10-16 — decoupled from the excavator bundle: skills are
   produced into `output/<date-target>/<skill-name>/` (staging, tracked
   here), `<excavator-root>` placeholder removed — promotion into
